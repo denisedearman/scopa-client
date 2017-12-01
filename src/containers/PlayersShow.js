@@ -1,18 +1,29 @@
-import React from 'react';
+import React, {Component} from 'react';
 import { connect } from 'react-redux';
+import { getPlayers } from '../actions/index.js';
 
-const PlayersShow = ({ player }) =>
-  <div className="col-md-8">
-    <h2>{player.name}</h2>
-  </div>;
-
-const mapStateToProps = (state, ownProps) => {
-  const player = state.players.find(player => player.id == ownProps.match.params.playerId)
-  if (player) {
-    return {player}
-  }else{
-    return {player: {}}
+class PlayersShow extends Component {
+  componentDidMount(){
+    this.props.getPlayers(this.props.match.params.playerId);
   }
+
+  render() {
+    let player = this.props.player[0];
+
+    return(
+      <div className="col-md-8">
+      {
+        player ? (<h2>{player.name}</h2>) : (<p>None</p>)
+      }
+      </div>
+    )
+  }
+}
+
+const mapStateToProps = (state) => {
+  return({
+    player: state.players
+  })
 };
 
-export default connect(mapStateToProps)(PlayersShow);
+export default connect(mapStateToProps, {getPlayers})(PlayersShow);
