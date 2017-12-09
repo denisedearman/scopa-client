@@ -28,21 +28,22 @@ export function createPlayer(player, history){
   }
 }
 
-export function getPlayers() {
-    return dispatch => {
-        return fetch(`/players`)
-			.then(response => response.json())
-			.then(players => dispatch(setPlayers(players)))
-			.catch(error => console.log("Error ", error))
-    }
+export function setPlayers(players) {
+ return{
+   type: 'GET_PLAYERS',
+   players
+ }
 }
 
-
- export function setPlayers(players) {
-  return{
-    type: 'GET_PLAYERS_SUCCESS',
-    players
-  }
+export function getPlayers() {
+    return dispatch => {
+        return fetch(`${API_URL}/players`)
+			.then(response => response.json())
+			.then(players => {
+        dispatch(setPlayers(players))
+      })
+			.catch(error => console.log("Error ", error))
+    }
 }
 
   export const updatePlayerFormData = playerFormData => {

@@ -1,32 +1,39 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Route, Switch } from 'react-router-dom';
-import { getPlayers } from '../actions';
+import { getPlayers } from '../actions/playerActions';
 import PlayersNew from './PlayersNew';
 import PlayersShow from './PlayersShow';
-import PlayersList from '../components/PlayersList';
+import PlayerItem from '../components/PlayerItem';
 
 class PlayersPage extends Component {
 
   componentDidMount() {
-    this.props.getPlayers();
+    this.props.getPlayers()
   }
 
   render() {
-    const{players} = this.props;
+    const {players, match} = this.props;
 
     return (
-      <div>
-        <PlayersList players={players}/>
-        <Switch>
-          <Route path={`/new`} component={PlayersNew} />
-          <Route path={`/:playerId`} component={PlayersShow}/>
-          <Route exact path={''} render={() => (
-            <h3>Please select a Player from the list.</h3>
-          )}/>
-        </Switch>
-      </div>
-    )
+     <div>
+     <Switch>
+     <Route exact path={match.url}
+      render={() =>
+     <div className="PlayersList">
+     <h1 className="playerName">Players</h1>
+     {players.map(player => <PlayerItem key={player.id} player={player} />)}
+     </div>
+   }
+   />
+   <Route exact path="/players/new" component={PlayersNew}/>
+        <Route
+          path="/players/:playerId"
+          component={PlayersShow}
+        />
+      </Switch>
+    </div>
+   )
   }
 };
 

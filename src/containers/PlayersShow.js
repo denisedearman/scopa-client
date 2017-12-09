@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import { connect } from 'react-redux';
-import { getPlayers } from '../actions/index.js';
+import { getPlayers } from '../actions/playerActions';
 
 class PlayersShow extends Component {
   componentDidMount(){

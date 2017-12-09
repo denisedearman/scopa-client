@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { createPlayer, updatePlayerFormData } from '../actions';
+import { createPlayer, updatePlayerFormData } from '../actions/playerActions';
 
 class PlayersNew extends Component {
 

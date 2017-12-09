@@ -3,6 +3,7 @@ import { BrowserRouter as Router, NavLink, Route, Switch } from 'react-router-do
 import logo from './logo.svg';
 import PlayersNew from './containers/PlayersNew';
 import PlayersShow from './containers/PlayersShow';
+import PlayersPage from './containers/PlayersPage';
 import './App.css';
 
 class App extends Component {
@@ -11,9 +12,9 @@ class App extends Component {
       <div className="App">
         <Router>
           <div>
-            <NavLink style={{ marginRight: '10px' }} to="/players">See All The Players!</NavLink>
             <Switch>
-              <Route exact path='/players' component={PlayersShow}/>
+              <Route exact path='/players' component={PlayersPage}/>
+              <Route path='/players/:playerId' component={PlayersShow}/>
               <Route exact path='/players/new' component={PlayersNew}/>
             </Switch>
           </div>
