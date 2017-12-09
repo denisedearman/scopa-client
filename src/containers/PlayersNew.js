@@ -1,29 +1,25 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { createPlayer } from '../actions';
+import { createPlayer, updatePlayerFormData } from '../actions';
 
 class PlayersNew extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      name: '',
-    };
-  }
 
   handleOnSubmit = event => {
     event.preventDefault();
-    const { createPlayer, history } = this.props
-    createPlayer(this.state);
-    history.push('/players');
+    const { createPlayer, playerFormData, history } = this.props
+    createPlayer(playerFormData, history);
   }
 
   handleOnChange = event => {
-    this.setState({
-      [event.target.name]: event.target.value
-    });
+    const {name, value} = event.target;
+    const currentPlayerForm = Object.assign({}, this.props.playerFormData, {
+      [name]: value
+    })
+    this.props.updatePlayerFormData(currentPlayerForm)
   }
 
   render() {
+    const {name} = this.props.playerFormData;
     return (
       <div>
         <h2>Add a Player</h2>
@@ -32,14 +28,22 @@ class PlayersNew extends Component {
             type="text"
             placeholder="Name"
             name="name"
+            value={name}
             onChange={this.handleOnChange} />
           <input
             type="submit"
             value="Add Player" />
         </form>
       </div>
-    );
+    )
   }
 };
 
-export default connect(null, { createPlayer })(PlayersNew);
+const mapStateToProps = state => {
+  return {
+    playerFormData: state.playerFormData,
+    errors: state.errors
+  }
+}
+
+export default connect(mapStateToProps, { updatePlayerFormData, createPlayer })(PlayersNew);

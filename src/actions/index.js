@@ -1,3 +1,5 @@
+const API_URL = process.env.REACT_APP_API_URL;
+
 export function addPlayer(player){
   return{
     type: 'CREATE_PLAYER_SUCCESS',
@@ -5,22 +7,24 @@ export function addPlayer(player){
   }
 }
 
-export function createPlayer(state){
+export function createPlayer(player, history){
   return dispatch => {
-    return fetch('/players',{
+    return fetch(`${API_URL}/players`,{
       method: 'POST',
       headers: {
         'Content-Type': 'application/json'
       },
-      body: JSON.stringify({
-        player: Object.assign({}, state, {
-          name: state.name
-        })
-      })
+      body: JSON.stringify({player: player})
     })
     .then(response => response.json())
-    .then(player => dispatch(addPlayer(player)))
-    .catch(err => console.log("error: ", err))
+    .then(player => {dispatch(addPlayer(player))
+    dispatch(resetPlayerForm())
+    history.replace(`/players/${player.id}`)
+    })
+    .catch(err => {
+      console.log("error: ", err)
+      history.replace(`/recipes/new`)
+    })
   }
 }
 
@@ -40,3 +44,16 @@ export function getPlayers() {
     players
   }
 }
+
+  export const updatePlayerFormData = playerFormData => {
+    return{
+      type: 'UPDATED_PLAYER',
+      playerFormData
+    }
+  }
+
+  export const resetPlayerForm = () => {
+    return{
+      type: 'RESET_PLAYER_FORM'
+    }
+  }
