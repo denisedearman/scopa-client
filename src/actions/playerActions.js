@@ -23,7 +23,7 @@ export function createPlayer(player, history){
     })
     .catch(err => {
       console.log("error: ", err)
-      history.replace(`/recipes/new`)
+      history.replace(`/players/new`)
     })
   }
 }
