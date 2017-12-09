@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { createGame, createGameFormData } from '../actions/gameActions';
+import { createGame, updateGameFormData } from '../actions/gameActions';
 
 class GamesNew extends Component {
 
@@ -47,9 +47,9 @@ class GamesNew extends Component {
 
 const mapStateToProps = state => {
   return {
-    playerFormData: state.playerFormData,
+    gameFormData: state.gameFormData,
     errors: state.errors
   }
 }
 
-export default connect(mapStateToProps, { updatePlayerFormData, createPlayer })(PlayersNew);
+export default connect(mapStateToProps, { updateGameFormData, createGame })(GamesNew);

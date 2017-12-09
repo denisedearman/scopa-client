@@ -1,5 +1,19 @@
 const API_URL = process.env.REACT_APP_API_URL;
 
+export function addGame(game) {
+  return{
+    type: 'CREATE_GAME_SUCCESS',
+    game
+  }
+}
+
+export function setGames(games) {
+ return{
+   type: 'GET_GAMES',
+   games
+ }
+}
+
 export function createGame(player_1, player_2, history){
   return dispatch => {
     return fetch(`${API_URL}/games`,{
@@ -9,7 +23,7 @@ export function createGame(player_1, player_2, history){
       },
       body: JSON.stringify(
         {game:
-          {player_1: player_1
+          {player_1: player_1,
             player_2: player_2
           }
       })
@@ -23,5 +37,18 @@ export function createGame(player_1, player_2, history){
       console.log("error: ", err)
       history.replace(`/games/new`)
     })
+  }
+}
+
+export const updateGameFormData= gameFormData => {
+  return{
+    type: 'UPDATED_GAME',
+    gameFormData
+  }
+}
+
+export const resetGameForm = () => {
+  return{
+    type: 'RESET_GAME_FORM'
   }
 }
