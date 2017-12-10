@@ -14,7 +14,14 @@ export function setGames(games) {
  }
 }
 
-export function createGame(player_1, player_2, history){
+export function setGame(game) {
+ return{
+   type: 'GET_GAME',
+   game
+ }
+}
+
+export function createGame(gameFormData, history){
   return dispatch => {
     return fetch(`${API_URL}/games`,{
       method: 'POST',
@@ -23,8 +30,9 @@ export function createGame(player_1, player_2, history){
       },
       body: JSON.stringify(
         {game:
-          {player_1: player_1,
-            player_2: player_2
+          {player_1: gameFormData.player_1,
+            player_2: gameFormData.player_2,
+            cards: []
           }
       })
     })
@@ -38,6 +46,29 @@ export function createGame(player_1, player_2, history){
       history.replace(`/games/new`)
     })
   }
+}
+
+export function getGames() {
+    return dispatch => {
+        return fetch(`${API_URL}/games`)
+			.then(response => response.json())
+			.then(games => {
+        dispatch(setGames(games))
+      })
+			.catch(error => console.log("Error ", error))
+    }
+}
+
+
+export function getGame(gameId) {
+    return dispatch => {
+        return fetch(`${API_URL}/games/${gameId}`)
+			.then(response => response.json())
+			.then(game => {
+        dispatch(setGame(game))
+      })
+			.catch(error => console.log("Error ", error))
+    }
 }
 
 export const updateGameFormData= gameFormData => {
