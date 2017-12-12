@@ -14,6 +14,13 @@ export function setGames(games) {
  }
 }
 
+export function setCurrentPlayer(current_player) {
+  return{
+    type: 'GET_CURRENT_PLAYER',
+    current_player
+  }
+}
+
 export function setGame(game) {
  return{
    type: 'GET_GAME',
@@ -69,6 +76,18 @@ export function getGame(gameId) {
       })
 			.catch(error => console.log("Error ", error))
     }
+}
+
+export function playGame(gameId, history){
+  return dispatch => {
+      return fetch(`${API_URL}/games/${gameId}/play`)
+    .then(response => response.json())
+    .then(current_player => {
+      dispatch(setCurrentPlayer(current_player))
+      history.replace(`/games/${gameId}/player/${current_player.id}`)
+    })
+    .catch(error => console.log("Error ", error))
+  }
 }
 
 export const updateGameFormData= gameFormData => {
