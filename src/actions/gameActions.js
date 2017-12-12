@@ -46,7 +46,7 @@ export function createGame(gameFormData, history){
     .then(response => response.json())
     .then(game => {dispatch(addGame(game))
     dispatch(resetGameForm())
-    history.replace(`/games/${game.id}`)
+    history.replace(`/games/${game.game_id}`)
     })
     .catch(err => {
       console.log("error: ", err)
