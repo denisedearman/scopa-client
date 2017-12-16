@@ -65,6 +65,21 @@ export function getPlayerTurn(game_id, player_id) {
   }
 }
 
+
+export function getPlayerGameEdit(game_id, player_id) {
+  return dispatch => {
+    return fetch(`${API_URL}/games/${game_id}/players/${player_id}/edit`)
+      .then(response => response.json())
+      .then(player => {
+        dispatch(setCurrentPlayer(player))
+      })
+      .catch(error => console.log("Error ", error))
+  }
+}
+
+
+
+
   export const updatePlayerFormData = playerFormData => {
     return{
       type: 'UPDATED_PLAYER',

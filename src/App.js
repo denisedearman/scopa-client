@@ -5,6 +5,7 @@ import PlayersNew from './containers/PlayersNew';
 import GamesNew from './containers/GamesNew';
 import PlayersShow from './containers/PlayersShow';
 import GameShow from './containers/GameShow';
+import GameEdit from './containers/GameEdit';
 import PlayersPage from './containers/PlayersPage';
 import PlayerTurn from './containers/PlayerTurn';
 import './App.css';
@@ -20,6 +21,7 @@ class App extends Component {
               <Route path='/players/:playerId' component={PlayersShow}/>
               <Route exact path='/players/new' component={PlayersNew}/>
               <Route exact path='/games/new' component={GamesNew}/>
+              <Route path='/games/:gameId/players/:playerId/edit' component={GameEdit}/>
               <Route path='/games/:gameId/players/:playerId' component={PlayerTurn}/>
               <Route path='/games/:gameId' component={GameShow}/>
 

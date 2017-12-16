@@ -6,11 +6,13 @@ import games from './reducers/gamesReducer';
 import game from './reducers/currentGameReducer';
 import player from './reducers/currentPlayerReducer';
 import gameFormData from './reducers/gameFormReducer';
+import playerTurnFormData from './reducers/playerTurnFormReducer';
 
 const reducers = combineReducers({
     player,
     players,
     playerFormData,
+    playerTurnFormData,
     game,
     games,
     gameFormData
