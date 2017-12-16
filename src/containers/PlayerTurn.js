@@ -2,13 +2,13 @@ import React, {Component} from 'react';
 import { connect } from 'react-redux';
 import { getPlayerTurn } from '../actions/playerActions';
 
-class PlayersShow extends Component {
+class PlayerTurn extends Component {
   componentDidMount(){
-    this.props.getPlayerTurn(this.props.match.params.playerId);
+    this.props.getPlayerTurn(this.props.match.params.gameId, this.props.match.params.playerId);
   }
 
   render() {
-    let player = this.props.player[0];
+    let player = this.props.player;
 
     return(
       <div className="col-md-8">

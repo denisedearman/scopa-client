@@ -28,6 +28,14 @@ export function createPlayer(player, history){
   }
 }
 
+export function setCurrentPlayer(current_player) {
+  return{
+    type: 'GET_CURRENT_PLAYER',
+    current_player
+  }
+}
+
+
 export function setPlayers(players) {
  return{
    type: 'GET_PLAYERS',
@@ -44,6 +52,17 @@ export function getPlayers() {
       })
 			.catch(error => console.log("Error ", error))
     }
+}
+
+export function getPlayerTurn(game_id, player_id) {
+  return dispatch => {
+    return fetch(`${API_URL}/games/${game_id}/players/${player_id}`)
+      .then(response => response.json())
+      .then(player => {
+        dispatch(setCurrentPlayer(player))
+      })
+      .catch(error => console.log("Error ", error))
+  }
 }
 
   export const updatePlayerFormData = playerFormData => {

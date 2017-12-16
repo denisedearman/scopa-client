@@ -84,7 +84,7 @@ export function playGame(gameId, history){
     .then(response => response.json())
     .then(current_player => {
       dispatch(setCurrentPlayer(current_player))
-      history.replace(`/games/${gameId}/player/${current_player.id}`)
+      history.replace(`/games/${gameId}/players/${current_player.id}`)
     })
     .catch(error => console.log("Error ", error))
   }
