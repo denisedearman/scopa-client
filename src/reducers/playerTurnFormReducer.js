@@ -5,8 +5,8 @@ const initialState = {
 
 export default (state = initialState, action) => {
   switch(action.type) {
-    case 'UPDATED_PLAYER_TURN_FORM_GAME':
-      return action.gameFormData;
+    case 'UPDATED_PLAYER_TURN_FORM':
+      return action.playerTurnFormData;
     case 'RESET_PLAYER_TURN_FORM':
       return initialState;
     default:

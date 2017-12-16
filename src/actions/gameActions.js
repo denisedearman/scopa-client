@@ -65,8 +65,8 @@ export function updateGame(game_id, player_id, playerTurnFormData, history){
       body: JSON.stringify(
         {player:
           {
-            hand: playerTurnFormData.hand,
-            table: playerTurnFormData.table
+            play_hand: playerTurnFormData.selectedHand,
+            play_table: playerTurnFormData.selectedTable
           }
       })
     })
@@ -76,6 +76,7 @@ export function updateGame(game_id, player_id, playerTurnFormData, history){
     history.replace(`/games/${game_id}/players/${player.player_id}`)
     })
     .catch(err => {
+      history.replace(`/games/${game_id}/players/${player_id}/edit`)
       console.log("error: ", err)
     })
   }

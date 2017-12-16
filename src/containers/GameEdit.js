@@ -12,14 +12,53 @@ class GameEdit extends Component {
     event.preventDefault();
     const { updateGame, playerTurnFormData, history } = this.props
     updateGame(this.props.match.params.gameId, this.props.match.params.playerId, playerTurnFormData, history);
+
   }
 
-  handleOnChange = event => {
-    const {name, value} = event.target;
-    const currentPlayerTurnForm = Object.assign({}, this.props.playerTurnFormData, {
-      [name]: value
-    })
-    this.props.updatePlayerTurnFormData(currentPlayerTurnForm)
+  onClickTable = event => {
+    const{name, value} = event.target;
+    if (event.target.style.backgroundColor == "") {
+      event.target.style.backgroundColor = "yellow"
+      const currentTable = Object.assign({}, this.props.playerTurnFormData.selectedTable,{
+        [name]: true
+      });
+      const currentPlayerTurnForm = Object.assign({}, this.props.playerTurnFormData, {
+        selectedTable: currentTable
+      })
+      this.props.updatePlayerTurnFormData(currentPlayerTurnForm)
+    } else {
+      event.target.style.backgroundColor = ""
+      const currentTable = Object.assign({}, this.props.playerTurnFormData.selectedTable,{
+        [name]: false
+      });
+      const currentPlayerTurnForm = Object.assign({}, this.props.playerTurnFormData, {
+        selectedTable: currentTable
+      })
+      this.props.updatePlayerTurnFormData(currentPlayerTurnForm)
+    }
+  }
+
+  onClickHand = event => {
+    const{name, value} = event.target;
+    if (event.target.style.backgroundColor == "") {
+      event.target.style.backgroundColor = "yellow"
+      const currentHand = Object.assign({}, this.props.playerTurnFormData.selectedHand,{
+        [name]: true
+      });
+      const currentPlayerTurnForm = Object.assign({}, this.props.playerTurnFormData, {
+        selectedHand: currentHand
+      })
+      this.props.updatePlayerTurnFormData(currentPlayerTurnForm)
+    } else {
+      event.target.style.backgroundColor = ""
+      const currentHand = Object.assign({}, this.props.playerTurnFormData.selectedHand,{
+        [name]: false
+      });
+      const currentPlayerTurnForm = Object.assign({}, this.props.playerTurnFormData, {
+        selectedHand: currentHand
+      })
+      this.props.updatePlayerTurnFormData(currentPlayerTurnForm)
+    }
   }
 
   render() {
@@ -27,11 +66,13 @@ class GameEdit extends Component {
     return (
       <div>
         <h2>Capture or Place a card onto the table</h2>
+
         <form onSubmit={this.handleOnSubmit} >
           <h2>Table</h2>
-          {table.map(card => <input type="button" placeholder={card.name} name={card.id} key={card.id} onChange={this.handleOnChange} />)}
+          {table.map(card => <input type="button" name={card.id} onClick={this.onClickTable} placeholder={card.id} value={card.value + " of " + card.suit}/>)}
           <h2> Your Hand </h2>
-          {hand.map(card => <input type="button" placeholder={card.name} name={card.id} key={card.id} onChange={this.handleOnChange} />)}
+          {hand.map(card => <input type="button" name={card.id} onClick={this.onClickHand} value={card.value + " of " + card.suit}/>)}
+          <br/><br/>
           <input
             type="submit"
             value="Play Move" />
