@@ -28,12 +28,8 @@ class GameEdit extends Component {
       this.props.updatePlayerTurnFormData(currentPlayerTurnForm)
     } else {
       event.target.style.backgroundColor = ""
-      const currentTable = Object.assign({}, this.props.playerTurnFormData.selectedTable,{
-        [name]: false
-      });
-      const currentPlayerTurnForm = Object.assign({}, this.props.playerTurnFormData, {
-        selectedTable: currentTable
-      })
+      delete this.props.playerTurnFormData.selectedTable[name];
+      const currentPlayerTurnForm = Object.assign({}, this.props.playerTurnFormData)
       this.props.updatePlayerTurnFormData(currentPlayerTurnForm)
     }
   }
@@ -51,12 +47,8 @@ class GameEdit extends Component {
       this.props.updatePlayerTurnFormData(currentPlayerTurnForm)
     } else {
       event.target.style.backgroundColor = ""
-      const currentHand = Object.assign({}, this.props.playerTurnFormData.selectedHand,{
-        [name]: false
-      });
-      const currentPlayerTurnForm = Object.assign({}, this.props.playerTurnFormData, {
-        selectedHand: currentHand
-      })
+      delete this.props.playerTurnFormData.selectedHand[name]
+      const currentPlayerTurnForm = Object.assign({}, this.props.playerTurnFormData)
       this.props.updatePlayerTurnFormData(currentPlayerTurnForm)
     }
   }
