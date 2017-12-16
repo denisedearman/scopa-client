@@ -57,8 +57,8 @@ export function createGame(gameFormData, history){
 
 export function updateGame(game_id, player_id, playerTurnFormData, history){
   return dispatch => {
-    return fetch(`${API_URL}/games/${game_id}/players/${player_id}/update`,{
-      method: 'POST',
+    return fetch(`${API_URL}/games/${game_id}/players/${player_id}`,{
+      method: 'PUT',
       headers: {
         'Content-Type': 'application/json'
       },
