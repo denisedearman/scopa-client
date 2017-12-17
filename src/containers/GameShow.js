@@ -1,5 +1,6 @@
 import React, {Component} from 'react';
 import { connect } from 'react-redux';
+import { Link } from 'react-router-dom';
 import { getGame, playGame } from '../actions/gameActions';
 
 class GameShow extends Component {
@@ -21,8 +22,8 @@ class GameShow extends Component {
         game ? (
             <div>
             <h2>{game.player_1} vs {game.player_2}</h2>
-            <h2>Score: {game.player_1_score ? game.player_1_score : 0} : {game.player_2_score ? game.player_2_score : 0}</h2>
-            <button onClick={this.handleOnClick}>Start</button>
+            <h2>Score: {game.player_1_points ? game.player_1_points : 0} : {game.player_2_points ? game.player_2_points : 0}</h2>
+            {game.status == "end" ? <Link to={`/games/${this.props.match.params.gameId}/summary`}>View Round Summary</Link> : <button onClick={this.handleOnClick}>Start</button>}
             </div>
         ) : (<p>None</p>)
       }
