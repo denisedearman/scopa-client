@@ -17,7 +17,7 @@ class GameShow extends Component {
     let game = this.props.game;
 
     return(
-      <div className="col-md-8">
+      <div className="container-fluid">
       {
         game ? (
             <div>

@@ -72,7 +72,6 @@ export function updateGame(game_id, player_id, playerTurnFormData, history){
     })
     .then(response => response.json())
     .then(player => {
-    debugger;
     dispatch(setCurrentPlayer(player))
     dispatch(resetPlayerTurnFormData())
     history.replace(`/games/${game_id}/players/${player.player_id}`)

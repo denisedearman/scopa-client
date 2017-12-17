@@ -9,6 +9,7 @@ import GameShow from './containers/GameShow';
 import GameSummary from './containers/GameSummary';
 import GameEdit from './containers/GameEdit';
 import PlayersPage from './containers/PlayersPage';
+import GamesPage from './containers/GamesPage';
 import PlayerTurn from './containers/PlayerTurn';
 import './App.css';
 
@@ -16,6 +17,7 @@ class App extends Component {
   render() {
     return (
       <div className="App">
+      <div className="container-fluid">
       <h1>Scopa</h1>
         <Router>
           <div>
@@ -28,6 +30,7 @@ class App extends Component {
               <Route exact path='/players/new' component={PlayersNew}/>
               <Route exact path='/about' component={GameAbout}/>
               <Route exact path='/games/new' component={GamesNew}/>
+              <Route exact path='/games' component={GamesPage}/>
               <Route path='/games/:gameId/players/:playerId/edit' component={GameEdit}/>
               <Route path='/games/:gameId/players/:playerId' component={PlayerTurn}/>
               <Route path='/games/:gameId/summary' component={GameSummary}/>
@@ -36,6 +39,7 @@ class App extends Component {
             </Switch>
           </div>
         </Router>
+        </div>
       </div>
     );
   }

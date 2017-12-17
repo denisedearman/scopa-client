@@ -60,7 +60,7 @@ class GameEdit extends Component {
       <div>
         {
           hand.length > 0 ?
-          (<div>
+          (<div className="container-fluid">
           <h2>Capture or Place a card onto the table</h2>
 
           <form onSubmit={this.handleOnSubmit} >
