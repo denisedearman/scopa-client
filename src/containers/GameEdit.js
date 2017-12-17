@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import { Link } from 'react-router-dom';
 import { getPlayerGameEdit, updateGame, updatePlayerTurnFormData } from '../actions/gameActions';
 
 class GameEdit extends Component {
@@ -57,18 +58,25 @@ class GameEdit extends Component {
     const {hand, table} = this.props.playerTurnFormData;
     return (
       <div>
-        <h2>Capture or Place a card onto the table</h2>
+        {
+          hand.length > 0 ?
+          (<div>
+          <h2>Capture or Place a card onto the table</h2>
 
-        <form onSubmit={this.handleOnSubmit} >
-          <h2>Table</h2>
-          {table.map(card => <input type="button" name={card.id} onClick={this.onClickTable} placeholder={card.id} value={card.value + " of " + card.suit}/>)}
-          <h2> Your Hand </h2>
-          {hand.map(card => <input type="button" name={card.id} onClick={this.onClickHand} value={card.value + " of " + card.suit}/>)}
-          <br/><br/>
-          <input
-            type="submit"
-            value="Play Move" />
-        </form>
+          <form onSubmit={this.handleOnSubmit} >
+            <h2>Table</h2>
+            {table.map(card => <input type="button" name={card.id} onClick={this.onClickTable} placeholder={card.id} value={card.value + " of " + card.suit}/>)}
+            <h2> Your Hand </h2>
+            {hand.map(card => <input type="button" name={card.id} onClick={this.onClickHand} value={card.value + " of " + card.suit}/>)}
+            <br/><br/>
+            <input
+              type="submit"
+              value="Play Move" />
+          </form>
+          </div>) :
+          <Link to={`/games/${this.props.match.params.gameId}/summary`}>View Summary</Link>
+        }
+
       </div>
     )
   }
