@@ -11,6 +11,8 @@ import GameEdit from './containers/GameEdit';
 import PlayersPage from './containers/PlayersPage';
 import GamesPage from './containers/GamesPage';
 import PlayerTurn from './containers/PlayerTurn';
+import Menu from './components/Menu'
+import Header from './components/Header'
 import './App.css';
 
 class App extends Component {
@@ -18,12 +20,10 @@ class App extends Component {
     return (
       <div className="App">
       <div className="container-fluid">
-      <h1>Scopa</h1>
+      <Header/>
         <Router>
           <div>
-          <Link to={`/about`}>About</Link><br/>
-          <Link to={`/games/new`}>Create a new game</Link><br/>
-          <Link to={`/games`}>Select a matchup</Link><br/>
+          <Menu/>
             <Switch>
               <Route exact path='/players' component={PlayersPage}/>
               <Route path='/players/:playerId' component={PlayersShow}/>

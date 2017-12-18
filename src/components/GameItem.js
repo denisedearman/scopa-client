@@ -7,7 +7,7 @@ class GameItem extends Component {
     const {game, games} = this.props;
     return (
       <div key={game.id} className="GameItem">
-        <Link style={{ marginRight: '12px' }} key={game.id} to={`/games/${game.id}`}>{game.player_1} vs {game.player_2}</Link>
+        <Link key={game.id} to={`/games/${game.id}/summary`}>{game.player_1} vs {game.player_2}</Link>
       </div>
     )
   }

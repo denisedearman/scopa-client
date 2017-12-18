@@ -13,7 +13,7 @@ class PlayerTurn extends Component {
     let player = this.props.player;
 
     return(
-      <div className="col-md-8">
+      <div>
       {
           player && player.turn ? (<div><h3>It's your turn {player.name}!</h3>
           <Link to={`/games/${this.props.match.params.gameId}/players/${this.props.match.params.playerId}/edit`}>Play</Link>
