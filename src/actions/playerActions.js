@@ -71,11 +71,8 @@ export function getPlayerTurn(game_id, player_id) {
   }
 }
 
-export function likePlayer(player, players) {
-  if (!player.like){
-    player.like = 0;
-  }
-  const likedPlayer = Object.assign(...player, { like: player.like + 1 })
+export const likePlayer = (player) =>{
+  const likedPlayer = Object.assign(player, {like: player.like + 1})
   return dispatch => {
     return fetch(`${API_URL}/players/${player.id}`,{
       method: 'PUT',
@@ -87,16 +84,9 @@ export function likePlayer(player, players) {
       .then(response => response.json())
       .then(player => {
         dispatch(addLike(player))
-        dispatch(addLike(players))
       })
   }
 }
-
-
-
-
-
-
 
   export const updatePlayerFormData = playerFormData => {
     return{

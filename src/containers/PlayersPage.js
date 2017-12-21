@@ -14,6 +14,7 @@ class PlayersPage extends Component {
 
 
 
+
   render() {
     const {players, match} = this.props;
 
@@ -24,7 +25,7 @@ class PlayersPage extends Component {
       render={() =>
      <div className="PlayersList">
      <h1 className="playerName">Players</h1>
-     {players.map(player => (<div><PlayerItem key={player.id} player={player} /> </div>))}
+     {players.map(player => <PlayerItem key={player.id} player={player}/>)}
      </div>
    }
    />
