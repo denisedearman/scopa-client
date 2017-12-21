@@ -14,7 +14,7 @@ class PlayerItem extends Component {
     return (
       <div key={player.id} className="PlayerItem">
         <h4>{player.name}</h4>
-        <h2>{player.like} likes</h2>
+        <h5>{player.like} likes</h5>
         <button key={player.id} onClick={this.handleLike}>Like</button>
       </div>
     )
