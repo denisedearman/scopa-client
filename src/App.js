@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
-import { BrowserRouter as Router, NavLink, Link, Route, Switch } from 'react-router-dom';
-import logo from './logo.svg';
+import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import PlayersNew from './containers/PlayersNew';
 import GamesNew from './containers/GamesNew';
 import PlayersShow from './containers/PlayersShow';

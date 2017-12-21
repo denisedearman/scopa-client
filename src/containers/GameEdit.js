@@ -17,8 +17,8 @@ class GameEdit extends Component {
   }
 
   onClickTable = event => {
-    const{name, value} = event.target;
-    if (event.target.style.backgroundColor == "") {
+    const{name} = event.target;
+    if (event.target.style.backgroundColor === "") {
       event.target.style.backgroundColor = "yellow"
       const currentTable = Object.assign({}, this.props.playerTurnFormData.selectedTable,{
         [name]: true
@@ -36,8 +36,8 @@ class GameEdit extends Component {
   }
 
   onClickHand = event => {
-    const{name, value} = event.target;
-    if (event.target.style.backgroundColor == "") {
+    const{name} = event.target;
+    if (event.target.style.backgroundColor === "") {
       event.target.style.backgroundColor = "yellow"
       const currentHand = Object.assign({}, this.props.playerTurnFormData.selectedHand,{
         [name]: true

@@ -15,7 +15,7 @@ class GameSummary extends Component {
       <div>
       {
         game ?
-          game.status == "end" ?
+          game.status === "end" ?
           (
               <div>
               <h1>{game.player_1} vs {game.player_2}</h1>

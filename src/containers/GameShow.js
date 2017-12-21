@@ -23,7 +23,7 @@ class GameShow extends Component {
             <div>
             <h2>{game.player_1} vs {game.player_2}</h2>
             <h2>Score: {game.player_1_points ? game.player_1_points : 0} : {game.player_2_points ? game.player_2_points : 0}</h2>
-            {game.status == "end" ? <Link to={`/games/${this.props.match.params.gameId}/summary`}>View Round Summary</Link> : <button onClick={this.handleOnClick}>Start</button>}
+            {game.status === "end" ? <Link to={`/games/${this.props.match.params.gameId}/summary`}>View Round Summary</Link> : <button onClick={this.handleOnClick}>Start</button>}
             </div>
         ) : (<p>None</p>)
       }

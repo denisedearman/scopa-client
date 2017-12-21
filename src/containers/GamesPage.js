@@ -2,8 +2,6 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Route, Switch } from 'react-router-dom';
 import { getGames } from '../actions/gameActions';
-import GamesNew from './GamesNew';
-import GameShow from './GameShow';
 import GameItem from '../components/GameItem';
 
 class GamesPage extends Component {

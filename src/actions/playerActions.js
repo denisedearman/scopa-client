@@ -7,6 +7,13 @@ export function addPlayer(player){
   }
 }
 
+export function addLike(player){
+  return{
+    type: 'LIKE_PLAYER',
+    player
+  }
+}
+
 export function createPlayer(player, history){
   return dispatch => {
     return fetch(`${API_URL}/players`,{
@@ -35,7 +42,6 @@ export function setCurrentPlayer(current_player) {
   }
 }
 
-
 export function setPlayers(players) {
  return{
    type: 'GET_PLAYERS',
@@ -62,6 +68,27 @@ export function getPlayerTurn(game_id, player_id) {
         dispatch(setCurrentPlayer(player))
       })
       .catch(error => console.log("Error ", error))
+  }
+}
+
+export function likePlayer(player, players) {
+  if (!player.like){
+    player.like = 0;
+  }
+  const likedPlayer = Object.assign(...player, { like: player.like + 1 })
+  return dispatch => {
+    return fetch(`${API_URL}/players/${player.id}`,{
+      method: 'PUT',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({player: likedPlayer})
+    })
+      .then(response => response.json())
+      .then(player => {
+        dispatch(addLike(player))
+        dispatch(addLike(players))
+      })
   }
 }
 
