@@ -5,7 +5,7 @@ import {likePlayer} from '../actions/playerActions';
 class PlayerItem extends Component {
 
   handleLike = () => {
-    this.props.likePlayer(this.props.player, this.props.players);
+    this.props.likePlayer(this.props.player);
   }
 
 

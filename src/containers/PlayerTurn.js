@@ -10,16 +10,19 @@ class PlayerTurn extends Component {
 
 
   render() {
-    let player = this.props.player;
+    const {player} = this.props
 
     return(
       <div>
       {
           player && player.turn ? (<div><h3>It's your turn {player.name}!</h3>
+          <h3> You've captured {player.player_captures} cards</h3>
           <Link to={`/games/${this.props.match.params.gameId}/players/${this.props.match.params.playerId}/edit`}>Play</Link>
           </div>
           ):
-          player ? (<h3> {player.name} It's not your turn yet.</h3>):(<p>None</p>)
+          player ? (<div>
+            <h3> {player.name} It's not your turn yet.</h3>
+        </div>):(<p>None</p>)
       }
       </div>
     )

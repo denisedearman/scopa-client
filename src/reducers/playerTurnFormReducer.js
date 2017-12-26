@@ -1,6 +1,8 @@
 const initialState = {
   table: [],
-  hand: []
+  hand: [],
+  player: {},
+  player_captures: 0
 }
 
 export default (state = initialState, action) => {

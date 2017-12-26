@@ -55,12 +55,14 @@ class GameEdit extends Component {
   }
 
   render() {
-    const {hand, table} = this.props.playerTurnFormData;
+    const {hand, table, player, player_captures} = this.props.playerTurnFormData;
     return (
       <div>
         {
           hand.length > 0 ?
           (<div className="container-fluid">
+          <h1>{player.name}</h1>
+          <h2>{player_captures} captured cards</h2>
           <h2>Capture or Place a card onto the table</h2>
 
           <form onSubmit={this.handleOnSubmit} >
